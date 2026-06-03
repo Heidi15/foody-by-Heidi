@@ -4,7 +4,7 @@ import { db } from "./config/db.js";
 import { favoritesTable } from "./db/schema.js";
 
 const app = express();
-const PORT = ENV.PORT || 5001; // Utilise la variable centralisée de ton fichier env.js
+const PORT = ENV.PORT || 5001; 
 
 app.use(express.json());
 
@@ -39,7 +39,7 @@ app.post("/api/favorites", async (req, res) => {
   }
 });
 
-// Utilise la variable PORT ici pour que ce soit dynamique !
+
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
