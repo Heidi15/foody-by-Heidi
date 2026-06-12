@@ -18,3 +18,4 @@ const job = cron.CronJob("*/14 * * * *", function () { //toute les 15 min notifs
 export default job;
 
 
+//Ce fichier définit une tâche automatique (cron) qui s'exécute  * toutes les 14 minutes.

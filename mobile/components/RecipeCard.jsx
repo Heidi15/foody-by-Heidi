@@ -9,11 +9,13 @@ export default function RecipeCard({ recipe }) {
   const router = useRouter();
 
   return (
+    // La carte entière est un bouton cliquable
     <TouchableOpacity
       style={recipeCardStyles.container}
       onPress={() => router.push(`/recipe/${recipe.id}`)}
       activeOpacity={0.8}
     >
+      {/* Zone supérieure : Image de la recette */}
       <View style={recipeCardStyles.imageContainer}>
         <Image
           source={{ uri: recipe.image }}
@@ -22,7 +24,7 @@ export default function RecipeCard({ recipe }) {
           transition={300}
         />
       </View>
-
+      {/* Zone inférieure : Informations textuelles */}
       <View style={recipeCardStyles.content}>
         <Text style={recipeCardStyles.title} numberOfLines={2}>
           {recipe.title}
@@ -33,6 +35,7 @@ export default function RecipeCard({ recipe }) {
           </Text>
         )}
 
+
         <View style={recipeCardStyles.footer}>
           {recipe.cookTime && (
             <View style={recipeCardStyles.timeContainer}>
@@ -40,6 +43,9 @@ export default function RecipeCard({ recipe }) {
               <Text style={recipeCardStyles.timeText}>{recipe.cookTime}</Text>
             </View>
           )}
+          
+          {/* Affichage du nombre portions*/}
+
           {recipe.servings && (
             <View style={recipeCardStyles.servingsContainer}>
               <Ionicons name="people-outline" size={14} color={COLORS.textLight} />

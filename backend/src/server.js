@@ -85,3 +85,8 @@ app.delete("/api/favorites/:userId/:recipeId", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
+
+
+//Ce fichier gère le serveur Express et les routes de l'API pour 
+ //* l'application mobile. Il permet de connecter l'application à la 
+ //* base de données via Drizzle ORM pour gérer les recettes favorites.

@@ -12,8 +12,10 @@ import CategoryFilter from "../../../components/CategoryFilter";
 import RecipeCard from "../../../components/RecipeCard";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
+// Fonction utilitaire pour simuler un temps d'attente
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+//pour stocker les données de l'écran
 const HomeScreen = () => {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -23,16 +25,19 @@ const HomeScreen = () => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
+  // Fonction pour charger toutes les données initiales de l'API
   const loadData = async () => {
     try {
       setLoading(true);
 
+  // Appels API en parallèle pour gagner du temps
       const [apiCategories, randomMeals, featuredMeal] = await Promise.all([
         MealAPI.getCategories(),
         MealAPI.getRandomMeals(12),
         MealAPI.getRandomMeal(),
       ]);
 
+      // 3. Mise en forme et sauvegarde de la recette mise en avant
       const transformedCategories = apiCategories.map((cat, index) => ({
         id: index + 1,
         name: cat.strCategory,
@@ -59,6 +64,8 @@ const HomeScreen = () => {
     }
   };
 
+
+// Fonction pour charger les recettes d'une catégorie spécifique
   const loadCategoryData = async (category) => {
     try {
       const meals = await MealAPI.filterByCategory(category);
@@ -71,6 +78,9 @@ const HomeScreen = () => {
       setRecipes([]);
     }
   };
+
+
+  // Gestion du clic utilisateur sur une catégorie
 
   const handleCategorySelect = async (category) => {
     setSelectedCategory(category);
@@ -175,6 +185,8 @@ const HomeScreen = () => {
           </View>
         )}
 
+        {/* BARRE DE FILTRES : Liste horizontale des catégories */}
+
         {categories.length > 0 && (
           <CategoryFilter
             categories={categories}
@@ -182,12 +194,16 @@ const HomeScreen = () => {
             onSelectCategory={handleCategorySelect}
           />
         )}
-
+      {/* SECTION RECETTES : Grille des recettes de la catégorie sélectionnée */}
         <View style={homeStyles.recipesSection}>
           <View style={homeStyles.sectionHeader}>
             <Text style={homeStyles.sectionTitle}>{selectedCategory}</Text>
           </View>
 
+
+
+        {/* Affichage de la grille si des recettes existent, sinon écran vide */}
+          
           {recipes.length > 0 ? (
             <FlatList
               data={recipes}

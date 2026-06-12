@@ -37,3 +37,8 @@ export default function CategoryFilter({ categories, selectedCategory, onSelectC
     </View>
   );
 }
+
+//Le composant reçoit en paramètres :
+// - categories : la liste des catégories à afficher
+// - selectedCategory : le nom de la catégorie actuellement active
+// - onSelectCategory : la fonction à déclencher quand on clique sur une catégorie

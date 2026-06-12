@@ -4,6 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "@/constants/colors";
 import { favoritesStyles } from "@/assets/styles/favorites.styles";
 
+// Composant affiché lorsque l'utilisateur n'a pas encore ajouté de recettes à ses favoris
+
 function NoFavoritesFound() {
   const router = useRouter();
 
